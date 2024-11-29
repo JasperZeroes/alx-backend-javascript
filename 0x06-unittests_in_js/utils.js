@@ -1,20 +1,22 @@
+/**
+ * Defines utilities
+ */
 const Utils = {
-    calculateNumber: function calculateNumber(type, a, b) {
-      if (type === 'SUM') {
-        return Math.round(a) + Math.round(b);
+  calculateNumber(type, a, b) {
+    let result;
+    if (type === 'SUM') {
+      result = Math.round(a) + Math.round(b);
+    } else if (type === 'SUBTRACT') {
+      result = Math.round(a) - Math.round(b);
+    } else if (type === 'DIVIDE') {
+      if (Math.abs(Math.round(b)) === 0) {
+        result = 'Error';
+      } else {
+        result = Math.round(a) / Math.round(b);
       }
-      if (type === 'SUBTRACT') {
-        return Math.round(a) - Math.round(b);
-      }
-      if (type === 'DIVIDE') {
-        if (Math.round(b) === 0) {
-          return 'Error';
-        }
-        return Math.round(a) / Math.round(b);
-      }
-      return 0;
-    },
-  };
-  
-  module.exports = Utils;
-  
+    }
+    return result;
+  },
+};
+
+module.exports = Utils;

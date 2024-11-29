@@ -1,26 +1,35 @@
-const { expect } = require('chai');
-const { it, describe } = require('mocha');
+/**
+ * Test that payment called Utils.calculateNumber
+ */
+const chai = require('chai');
+const expect = chai.expect;
 const sinon = require('sinon');
+const Utils = require('./utils');
+const sendPaymentRequestToApi = require('./5-payment');
 
-const Utils = require('./utils.js');
-const sendPaymentRequestToApi = require('./5-payment.js');
-
-describe('', () => {
-  let spyBoy;
-  beforeEach(() => {
-    spyBoy = sinon.spy(console, 'log');
+describe('sendPaymentRequestToAp', function() {
+  beforeEach(function() {
+    sinon.spy(console, "log");
   });
-  afterEach(() => {
+  afterEach(function() {
     sinon.restore();
   });
-  it('checking if numbers round with spies and stubs 1st', () => {
+  it("with 100 and 20", function() {
     sendPaymentRequestToApi(100, 20);
-    expect(spyBoy.calledOnce).to.be.true;
-    expect(spyBoy.calledWith('The total is: 120')).to.be.true;
+    // Check that console is called once
+    expect(console.log.calledOnce).to.be.true;
+    // Check console call count
+    expect(console.log.callCount).to.be.equal(1);
+    // Check console param
+    expect(console.log.calledWith('The total is: 120')).to.be.true;
   });
-  it('checking if numbers round with spies and stubs 2nd', () => {
+  it("with 10 and 20", function() {
     sendPaymentRequestToApi(10, 10);
-    expect(spyBoy.calledOnce).to.be.true;
-    expect(spyBoy.calledWith('The total is: 20')).to.be.true;
+    // Check that console is called once
+    expect(console.log.calledOnce).to.be.true;
+    // Check console call count
+    expect(console.log.callCount).to.be.equal(1);
+    // Check console param
+    expect(console.log.calledWith('The total is: 20')).to.be.true;
   });
 });

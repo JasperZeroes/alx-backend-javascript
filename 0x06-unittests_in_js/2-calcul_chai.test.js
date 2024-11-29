@@ -1,67 +1,222 @@
-const assert = require('assert');
-const { expect } = require('chai');
-const { it, describe, test } = require('mocha');
+/**
+ * Test calculateNumber function
+ */
+const chai = require("chai");
+const expect = chai.expect;
 const calculateNumber = require('./2-calcul_chai');
 
-describe('calculateNumber', () => {
-    describe('SUM', () => {
-      it('checking if numbers round', () => {
-        expect(calculateNumber('SUM', 1, 3)).to.equal(4);
-      });
-      it('checking if numbers round 2nd round', () => {
-        expect(calculateNumber('SUM', 1, 3.7)).to.equal(5);
-      });
-      it('checking if numbers round 3rd round', () => {
-        expect(calculateNumber('SUM', 1.2, 3.7)).to.equal(5);
-      });
-      it('checking if numbers round 4th round', () => {
-        expect(calculateNumber('SUM', 1.5, 3.7)).to.equal(6);
-      });
-      it('checking if numbers round 5th round', () => {
-        expect(calculateNumber('SUM', 1.4, 4.5)).to.equal(6);
-      });
-      it('checking negative return', () => {
-        expect(calculateNumber('SUM', -1.3, -3.7)).to.equal(-5);
-      });
+describe("calculateNumber", function() {
+  describe('SUM', function() {
+    it("should return 0 with 0.1 and 0.4", function() {
+      expect(calculateNumber('SUM', 0.1, 0.4)).to.be.equal(0);
     });
-    describe('SUBTRACT', () => {
-      it('checking if numbers round', () => {
-        expect(calculateNumber('SUBTRACT', 1, 3)).to.equal(-2);
-      });
-      it('checking if numbers round 2nd round', () => {
-        expect(calculateNumber('SUBTRACT', 1, 3.7)).to.equal(-3);
-      });
-      it('checking if numbers round 3rd round', () => {
-        expect(calculateNumber('SUBTRACT', 6.2, 3.7)).to.equal(2);
-      });
-      it('checking if numbers round 4th round', () => {
-        expect(calculateNumber('SUBTRACT', 5.5, 3.7)).to.equal(2);
-      });
-      it('checking if numbers round 5th round', () => {
-        expect(calculateNumber('SUBTRACT', 1.4, 4.5)).to.equal(-4);
-      });
-      it('checking negative return', () => {
-        expect(calculateNumber('SUBTRACT', -1.3, -3.7)).to.equal(3);
-      });
+    it("should return 1 with 0.1 and 0.5", function() {
+      expect(calculateNumber('SUM', 0.1, 0.5)).to.be.equal(1);
     });
-    describe('DIVIDE', () => {
-      it('checking if numbers round', () => {
-        expect(calculateNumber('DIVIDE', 3, 1)).to.equal(3);
-      });
-      it('checking if numbers round 2nd round', () => {
-        expect(calculateNumber('DIVIDE', 4, 3.7)).to.equal(1);
-      });
-      it('checking if numbers round 3rd round', () => {
-        expect(calculateNumber('DIVIDE', 2.2, 0.7)).to.equal(2);
-      });
-      it('checking if numbers round 4th round', () => {
-        expect(calculateNumber('DIVIDE', 15, 2.7)).to.equal(5);
-      });
-      it('checking if numbers round 5th round', () => {
-        expect(calculateNumber('DIVIDE', 1.4, 4.5)).to.equal(0.2);
-      });
-      it('checking negative return', () => {
-        expect(calculateNumber('DIVIDE', -1.3, 0)).to.equal('Error');
-      });
+    it("should return 4 with 1 and 3", function() {
+      expect(calculateNumber('SUM', 1, 3)).to.be.equal(4);
+    });
+    it("should return 5 with 1 and 3.7", function() {
+      expect(calculateNumber('SUM', 1, 3.7)).to.be.equal(5);
+    });
+    it("should return 5 with 1.4 and 3.7", function() {
+      expect(calculateNumber('SUM', 1.4, 3.7)).to.be.equal(5);
+    });
+    it("should return 6 with 1.5 and 3.7", function() {
+      expect(calculateNumber('SUM', 1.5, 3.7)).to.be.equal(6);
+    });
+    it("should return 0 with -0.1 and 0.4", function() {
+      expect(calculateNumber('SUM', -0.1, 0.4)).to.be.equal(0);
+    });
+    it("should return 0 with -0.1 and -0.4", function() {
+      expect(calculateNumber('SUM', -0.1, -0.4)).to.be.equal(0);
+    });
+    it("should return 0 with -0.1 and -0.5", function() {
+      expect(calculateNumber('SUM', -0.1, -0.5)).to.be.equal(0);
+    });
+    it("should return -1 with -1.5 and -0.5", function() {
+      expect(calculateNumber('SUM', -1.5, -0.5)).to.be.equal(-1);
+    });
+    it("should return -3 with -1.6 and -0.6", function() {
+      expect(calculateNumber('SUM', -1.6, -0.6)).to.be.equal(-3);
+    });
+    it("should return 0 with -1.1 and 1.1", function() {
+      expect(calculateNumber('SUM', -1.1, 1.1)).to.be.equal(0);
+    });
+    it("should return -4 with -1 and -3", function() {
+      expect(calculateNumber('SUM', -1, -3)).to.be.equal(-4);
+    });
+    it("should return 3 with -1 and 3.7", function() {
+      expect(calculateNumber('SUM', -1, 3.7)).to.be.equal(3);
+    });
+    it("should return -3 with 1 and -3.7", function() {
+      expect(calculateNumber('SUM', 1, -3.7)).to.be.equal(-3);
+    });
+    it("should return -5 with -1 and -3.7", function() {
+      expect(calculateNumber('SUM', -1, -3.7)).to.be.equal(-5);
+    });
+    it("should return -5 with -1.4 and -3.7", function() {
+      expect(calculateNumber('SUM', -1.4, -3.7)).to.be.equal(-5);
+    });
+    it("should return 3 with -1.4 and 3.7", function() {
+      expect(calculateNumber('SUM', -1.4, 3.7)).to.be.equal(3);
+    });
+    it("should return -3 with -1.4 and -3.7", function() {
+      expect(calculateNumber('SUM', 1.4, -3.7)).to.be.equal(-3);
+    });
+    it("should return -5 with -1.5 and -3.7", function() {
+      expect(calculateNumber('SUM', -1.5, -3.7)).to.be.equal(-5);
+    });
+    it("should return -2 with 1.5 and -3.7", function() {
+      expect(calculateNumber('SUM', 1.5, -3.7)).to.be.equal(-2);
+    });
+    it("should return 3 with -1.5 and 3.7", function() {
+      expect(calculateNumber('SUM', -1.5, 3.7)).to.be.equal(3);
+    });
+    it("should return -6 with -1.6 and -3.7", function() {
+      expect(calculateNumber('SUM', -1.6, -3.7)).to.be.equal(-6);
+    });
+    it("should return 2 with -1.6 and 3.7", function() {
+      expect(calculateNumber('SUM', -1.6, 3.7)).to.be.equal(2);
+    });
+    it("should return 2 with -1.6 and 3.7", function() {
+      expect(calculateNumber('SUM', -1.6, 3.7)).to.be.equal(2);
     });
   });
+  describe('SUBTRACT', function() {
+    it("should return 0 with 0.1 and 0.4", function() {
+      expect(calculateNumber('SUBTRACT', 0.1, 0.4)).to.be.equal(0);
+    });
+    it("should return -1 with 0.1 and 0.5", function() {
+      expect(calculateNumber('SUBTRACT', 0.1, 0.5)).to.be.equal(-1);
+    });
+    it("should return -2 with 1 and 3", function() {
+      expect(calculateNumber('SUBTRACT', 1, 3)).to.be.equal(-2);
+    });
+    it("should return -3 with 1 and 3.7", function() {
+      expect(calculateNumber('SUBTRACT', 1, 3.7)).to.be.equal(-3);
+    });
+    it("should return -3 with 1.4 and 3.7", function() {
+      expect(calculateNumber('SUBTRACT', 1.4, 3.7)).to.be.equal(-3);
+    });
+    it("should return -2 with 1.5 and 3.7", function() {
+      expect(calculateNumber('SUBTRACT', 1.5, 3.7)).to.be.equal(-2);
+    });
+    it("should return 0 with -0.1 and 0.4", function() {
+      expect(calculateNumber('SUBTRACT', -0.1, 0.4)).to.be.equal(0);
+    });
+    it("should return 0 with -0.1 and -0.4", function() {
+      expect(calculateNumber('SUBTRACT', -0.1, -0.4)).to.be.equal(0);
+    });
+    it("should return 0 with -0.1 and -0.5", function() {
+      expect(calculateNumber('SUBTRACT', -0.1, -0.5)).to.be.equal(0);
+    });
+    it("should return -1 with -1.5 and -0.5", function() {
+      expect(calculateNumber('SUBTRACT', -1.5, -0.5)).to.be.equal(-1);
+    });
+    it("should return -1 with -1.6 and -0.6", function() {
+      expect(calculateNumber('SUBTRACT', -1.6, -0.6)).to.be.equal(-1);
+    });
+    it("should return -2 with -1.1 and 1.1", function() {
+      expect(calculateNumber('SUBTRACT', -1.1, 1.1)).to.be.equal(-2);
+    });
+    it("should return 2 with -1 and -3", function() {
+      expect(calculateNumber('SUBTRACT', -1, -3)).to.be.equal(2);
+    });
+    it("should return -5 with -1 and 3.7", function() {
+      expect(calculateNumber('SUBTRACT', -1, 3.7)).to.be.equal(-5);
+    });
+    it("should return -5 with 1 and -3.7", function() {
+      expect(calculateNumber('SUBTRACT', 1, -3.7)).to.be.equal(5);
+    });
+    it("should return 3 with -1 and -3.7", function() {
+      expect(calculateNumber('SUBTRACT', -1, -3.7)).to.be.equal(3);
+    });
+    it("should return 3 with -1.4 and -3.7", function() {
+      expect(calculateNumber('SUBTRACT', -1.4, -3.7)).to.be.equal(3);
+    });
+    it("should return -5 with -1.4 and 3.7", function() {
+      expect(calculateNumber('SUBTRACT', -1.4, 3.7)).to.be.equal(-5);
+    });
+    it("should return 5 with -1.4 and -3.7", function() {
+      expect(calculateNumber('SUBTRACT', 1.4, -3.7)).to.be.equal(5);
+    });
+    it("should return 3 with -1.5 and -3.7", function() {
+      expect(calculateNumber('SUBTRACT', -1.5, -3.7)).to.be.equal(3);
+    });
+    it("should return 6 with 1.5 and -3.7", function() {
+      expect(calculateNumber('SUBTRACT', 1.5, -3.7)).to.be.equal(6);
+    });
+    it("should return -5 with -1.5 and 3.7", function() {
+      expect(calculateNumber('SUBTRACT', -1.5, 3.7)).to.be.equal(-5);
+    });
+    it("should return 2 with -1.6 and -3.7", function() {
+      expect(calculateNumber('SUBTRACT', -1.6, -3.7)).to.be.equal(2);
+    });
+    it("should return -6 with -1.6 and 3.7", function() {
+      expect(calculateNumber('SUBTRACT', -1.6, 3.7)).to.be.equal(-6);
+    });
+  });
+  describe('DIVIDE', function() {
+    it("should return Error with 0.1 and 0.4", function() {
+      expect(calculateNumber('DIVIDE', 0.1, 0.4)).to.be.equal("Error");
+    });
+    it("should return 0 with 0.1 and 0.5", function() {
+      expect(calculateNumber('DIVIDE', 0.1, 0.5)).to.be.equal(0);
+    });
+    it("should return 0.25 with 1 and 3.7", function() {
+      expect(calculateNumber('DIVIDE', 1, 3.7)).to.be.equal(0.25);
+    });
+    it("should return 0.25 with 1.4 and 3.7", function() {
+      expect(calculateNumber('DIVIDE', 1.4, 3.7)).to.be.equal(0.25);
+    });
+    it("should return 0.5 with 1.5 and 3.7", function() {
+      expect(calculateNumber('DIVIDE', 1.5, 3.7)).to.be.equal(0.5);
+    });
+    it("should return Error with -0.1 and 0.4", function() {
+      expect(calculateNumber('DIVIDE', -0.1, 0.4)).to.be.equal("Error");
+    });
+    it("should return Error with -0.1 and -0.4", function() {
+      expect(calculateNumber('DIVIDE', -0.1, -0.4)).to.be.equal("Error");
+    });
+    it("should return Error with -0.1 and -0.5", function() {
+      expect(calculateNumber('DIVIDE', -0.1, -0.5)).to.be.equal("Error");
+    });
+    it("should return Error with -1.5 and -0.5", function() {
+      expect(calculateNumber('DIVIDE', -1.5, -0.5)).to.be.equal("Error");
+    });
+    it("should return 2 with -1.6 and -0.6", function() {
+      expect(calculateNumber('DIVIDE', -1.6, -0.6)).to.be.equal(2);
+    });
+    it("should return -1 with -1.1 and 1.1", function() {
+      expect(calculateNumber('DIVIDE', -1.1, 1.1)).to.be.equal(-1);
+    });
+    it("should return -0.25 with -1 and 3.7", function() {
+      expect(calculateNumber('DIVIDE', -1, 3.7)).to.be.equal(-0.25);
+    });
+    it("should return -0.25 with 1 and -3.7", function() {
+      expect(calculateNumber('DIVIDE', 1, -3.7)).to.be.equal(-0.25);
+    });
+    it("should return 0.25 with -1 and -3.7", function() {
+      expect(calculateNumber('DIVIDE', -1, -3.7)).to.be.equal(0.25);
+    });
+    it("should return 0.25 with -1.4 and -3.7", function() {
+      expect(calculateNumber('DIVIDE', -1.4, -3.7)).to.be.equal(.25);
+    });
+    it("should return 0.25 with -1.5 and -3.7", function() {
+      expect(calculateNumber('DIVIDE', -1.5, -3.7)).to.be.equal(.25);
+    });
+    it("should return -0.5 with 1.5 and -3.7", function() {
+      expect(calculateNumber('DIVIDE', 1.5, -3.7)).to.be.equal(-0.5);
+    });
+    it("should return 0.5 with -1.6 and -3.7", function() {
+      expect(calculateNumber('DIVIDE', -1.6, -3.7)).to.be.equal(0.5);
+    });
+    it("should return -0.5 with -1.6 and 3.7", function() {
+      expect(calculateNumber('DIVIDE', -1.6, 3.7)).to.be.equal(-0.5);
+    });
+    it("should return -2 with 3.7 and 1.6", function() {
+      expect(calculateNumber('DIVIDE', 3.7, -1.6)).to.be.equal(-2);
+    });
+  });
+});

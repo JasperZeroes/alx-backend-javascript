@@ -1,18 +1,23 @@
+/**
+ * Round params and sum them
+ * @param {string} type
+ * @param {number} a
+ * @param {number} b
+ */
 function calculateNumber(type, a, b) {
-    if (typeof (type) == String || type == 'SUM' || type == 'SUBTRACT' || type == 'DIVIDE') {
-        if (type == 'SUM') {
-            return Math.round(a) + Math.round(b);
-        } else if (type == 'SUBTRACT') {
-            return Math.round(a) - Math.round(b);
-        } else if (type == 'DIVIDE') {
-            if (Math.round(b) != 0) {
-                return Math.round(a) / Math.round(b);
-            }
-            return 'Error';
-        }
+  let result;
+  if (type === 'SUM') {
+    result = Math.round(a) + Math.round(b);
+  } else if (type === 'SUBTRACT') {
+    result = Math.round(a) - Math.round(b);
+  } else if (type === 'DIVIDE') {
+    if (Math.abs(Math.round(b)) === 0) {
+      result = 'Error';
     } else {
-        return 'Error'
+      result = Math.round(a) / Math.round(b);
     }
+  }
+  return result;
 }
 
 module.exports = calculateNumber;
